@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="/movies" method="post">
+		<label for="nameInput"> Title : </label> 
+		<input type="text" 	name="name" id="nameInput" /><br /><br />
+		
+		<label for="releaseYear"> Year : </label> 
+		<input type="number" name="releaseYear" id="releaseYear" />
+		
+				<label for="duration">Duration : </label> 
+		<input type="number" 	name="duration" id="duration" />
+		
+				<label for="synopsis">Synopsis : </label> 
+		<input type="text" 	name="synopsis" id="synopsis" />
+		
+		<br /><br />
+		<label for="directorFirstNameInput"> Director First Name : </label> 
+		<input type="text" 	name="directorFirstName" id="directorFirstNameInput" />
+		<label for="directorLastNameInput"> Director Last Name : </label> 
+		<input type="text" 	name="directorLastName" id="directorLastNameInput" />
+		<br /><br />
+		<label for="genreInput"> Genre : </label> 
+		<input type="text" 	name="genre" id="genreInput" />
+		<br /><br />
+		<button type="submit">Send</button>
+	</form>
+</body>
+</html>

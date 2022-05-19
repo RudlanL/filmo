@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Liste de film</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+	crossorigin="anonymous">
+</head>
+<body class="m-5">
+	<h1 class="mt-5">Liste de film</h1>
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="cols">Genre</th>
+				<th>Year</th>
+				<th>Title</th>
+				<th>Director</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="movie : ${movies}">
+				<td th:text="${movie.genre.name}">Adventure</td>
+				<td th:text="${movie.releaseyear}"></td>
+				<td th:text="${movie.name}"></td>
+				<td th:text="${movie.director.lastname + ' '+ movie.director.firstname}">Jean Pierre</td>
+				<td>
+					<div class="d-flex">
+						<a th:href="@{'/movies/'+${movie.id}}" class="btn btn-success mr-2">
+							Details
+						</a>
+						<button class="btn btn-dark">Avis</button>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+
+	</table>
+</body>
+</html>
