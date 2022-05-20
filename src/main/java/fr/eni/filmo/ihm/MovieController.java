@@ -7,17 +7,24 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import fr.eni.filmo.bll.CategoryService;
 import fr.eni.filmo.bll.MovieService;
+import fr.eni.filmo.bll.PersonneService;
 import fr.eni.filmo.bo.Genre;
 import fr.eni.filmo.bo.Movie;
 import fr.eni.filmo.bo.Personne;
 
 @Controller
+
 public class MovieController {
 	private MovieService movieService;
+	private PersonneService personneService;
+	private CategoryService categoryService;
 
-	public MovieController(MovieService movieService) {
+	public MovieController(MovieService movieService , PersonneService personneService , CategoryService categoryService) {
 		this.movieService = movieService;
+		this.personneService = personneService;
+		this.categoryService = categoryService ; 
 	}
 	
 	@PostMapping("/movies")
@@ -26,12 +33,15 @@ public class MovieController {
 			@RequestParam int releaseYear,
 			@RequestParam int duration,
 			@RequestParam String synopsis,
-			@RequestParam String directorFirstName,
-			@RequestParam String directorLastName,
-			@RequestParam String genre 
+			@RequestParam int director,
+			@RequestParam int genre
+			
+			
 		) {
-		Personne p = new Personne(directorFirstName, directorLastName);
-		Genre g = new Genre(genre);
+		
+		Personne p = this.personneService.select(director);
+		Genre g = this.categoryService.select(genre);
+		
 		Movie mov = new Movie(15,name , synopsis , duration , releaseYear, g, p );
 		movieService.insert(mov);
 		return "redirect:/movies";
@@ -50,4 +60,11 @@ public class MovieController {
 		model.addAttribute("movie", movieService.select(id));
 		return "movie";
 	}
+	@GetMapping("/form")
+	public String indexFormulaire(Model model) {
+		model.addAttribute("personnes", personneService.selectAll());
+		model.addAttribute("genres", categoryService.selectAll());
+		return "form";
+	}
+	
 }

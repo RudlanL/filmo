@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="/movies" method="post">
+		<label for="nameInput"> Title : </label> <input type="text"
+			name="name" id="nameInput" /><br /> <br /> <label
+			for="releaseYear"> Year : </label> <input type="number"
+			name="releaseYear" id="releaseYear" /> <label for="duration">Duration
+			: </label> <input type="number" name="duration" id="duration" /> <label
+			for="synopsis">Synopsis : </label> <input type="text" name="synopsis"
+			id="synopsis" /> <br /> <br /> <label for="directorFirstNameInput">
+			Director First Name : </label> <select name="director"
+			id="directorFirstNameInput">
+			<option value="">--Please choose an option--</option>
+			<option th:each="personne : ${personnes} "
+				th:text="${personne.firstname +' '+ personne.lastname}" th:value="${personne.id}"></option>
+
+
+
+		</select> <br /> <br /> <label for="genreInput"> Genre : </label> <br /> <select
+			name="genre" id="genreInput">
+			<option value="" >--Please choose an option--</option>
+			<option th:each="genre : ${genres} " th:text="${genre.name}" th:value="${genre.id}"></option>
+
+
+
+		</select> <br />
+
+		<button type="submit">Send</button>
+	</form>
+</body>
+</html>
