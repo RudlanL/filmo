@@ -11,6 +11,14 @@ public class Movie {
 	private Genre genre;
 	private Personne director;
 	private List<Personne> actors;
+	private List<Avis> avis ;
+	
+	public List<Avis> getAvis() {
+		return avis;
+	}
+	public void setAvis(List<Avis> avis) {
+		this.avis = avis;
+	}
 	public Movie() {
 		
 	}
@@ -23,7 +31,7 @@ public class Movie {
 		this.setDirector(director);
 		this.setGenre(genre);
 		this.setActors(actors);
-		}
+	}
 	public String getName() {
 		return name;
 	}

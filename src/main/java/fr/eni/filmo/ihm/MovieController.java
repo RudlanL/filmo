@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import fr.eni.filmo.bll.AvisService;
 import fr.eni.filmo.bll.CategoryService;
 import fr.eni.filmo.bll.MovieService;
 import fr.eni.filmo.bll.PersonneService;
+import fr.eni.filmo.bo.Avis;
 import fr.eni.filmo.bo.Genre;
 import fr.eni.filmo.bo.Movie;
 import fr.eni.filmo.bo.Personne;
@@ -21,12 +23,13 @@ public class MovieController {
 	private MovieService movieService;
 	private PersonneService personneService;
 	private CategoryService categoryService;
+	private AvisService avisService;
 
-	public MovieController(MovieService movieService, PersonneService personneService,
-			CategoryService categoryService) {
+	public MovieController(MovieService movieService , PersonneService personneService , CategoryService categoryService , AvisService avisService) {
 		this.movieService = movieService;
 		this.personneService = personneService;
-		this.categoryService = categoryService;
+		this.categoryService = categoryService ;
+		this.avisService = avisService;
 	}
 
 	@PostMapping("/movies")
@@ -57,5 +60,16 @@ public class MovieController {
 		model.addAttribute("movie", new Movie());
 		return "form";
 	}
-
+	
+	@GetMapping("/movies/{id}/avis")
+	public String affichierAvis(@PathVariable int id ,Model model) {
+		model.addAttribute("movie", movieService.select(id));
+		return "avis";
+	}
+	@PostMapping("/avis")
+	public String avis(@RequestParam int rate,
+			@RequestParam String description , @RequestParam int id) {
+		
+		return "redirect:/movies" ;
+	}
 }
