@@ -5,7 +5,7 @@ import java.util.List;
 
 import fr.eni.filmo.bo.Personne;
 
-public interface DirectorDao {
+public interface PersonneDao {
 	public void insert(Personne p);
 	public List<Personne> selectAll();
 	public Personne select(int i);

@@ -3,6 +3,7 @@ package fr.eni.filmo.ihm;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,37 +22,25 @@ public class MovieController {
 	private PersonneService personneService;
 	private CategoryService categoryService;
 
-	public MovieController(MovieService movieService , PersonneService personneService , CategoryService categoryService) {
+	public MovieController(MovieService movieService, PersonneService personneService,
+			CategoryService categoryService) {
 		this.movieService = movieService;
 		this.personneService = personneService;
-		this.categoryService = categoryService ; 
+		this.categoryService = categoryService;
 	}
-	
+
 	@PostMapping("/movies")
-	public String hello(
-			@RequestParam String name,
-			@RequestParam int releaseYear,
-			@RequestParam int duration,
-			@RequestParam String synopsis,
-			@RequestParam int director,
-			@RequestParam int genre
-			
-			
-		) {
-		
-		Personne p = this.personneService.select(director);
-		Genre g = this.categoryService.select(genre);
-		
-		Movie mov = new Movie(15,name , synopsis , duration , releaseYear, g, p );
+	public String hello(@ModelAttribute("movie") Movie movie) {
+		Movie mov = movie;
 		movieService.insert(mov);
 		return "redirect:/movies";
 	}
 
-	@GetMapping("/movies")
+	@GetMapping({ "", "/movies" })
 	public String afficherListeMovies(Model model) {
-		System.out.println( movieService.selectAll().size());
+		System.out.println(movieService.selectAll().size());
 		model.addAttribute("movies", movieService.selectAll());
-		System.out.println( movieService.selectAll().size());
+		System.out.println(movieService.selectAll().size());
 		return "listeMovie";
 	}
 
@@ -60,11 +49,13 @@ public class MovieController {
 		model.addAttribute("movie", movieService.select(id));
 		return "movie";
 	}
+
 	@GetMapping("/form")
 	public String indexFormulaire(Model model) {
 		model.addAttribute("personnes", personneService.selectAll());
 		model.addAttribute("genres", categoryService.selectAll());
+		model.addAttribute("movie", new Movie());
 		return "form";
 	}
-	
+
 }

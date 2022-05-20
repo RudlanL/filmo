@@ -16,24 +16,24 @@
 		<div class="row">
 			<div class="col-sm">
 				<label for="nameInput"> Title : </label> <input type="text"
-					name="name" id="nameInput" />
+					name="name" id="nameInput" th:field="${movie.name}" />
 			</div>
 			<div class="col-sm">
 				<label for="releaseYear"> Year : </label> <input type="number"
-					name="releaseYear" id="releaseYear" />
+					name="releaseYear" th:field="${movie.releaseyear}" id="releaseYear" />
 			</div>
 			<div class="col-sm">
 				<label for="duration">Duration : </label> <input type="number"
-					name="duration" id="duration" />
+					name="duration" id="duration" th:field="${movie.duration}"/>
 			</div>
 		</div>
 		<div class="row">
 			<label for="synopsis">Synopsis : </label>
-			<textarea type="text" name="synopsis" id="synopsis"></textarea>
+			<textarea type="text"  id="synopsis" th:field="${movie.synopsis}"></textarea>
 		</div>
 		<div class="row">
 			<label for="directorFirstNameInput"> Director First Name : </label> <select
-				name="director" id="directorFirstNameInput">
+				 id="directorFirstNameInput" th:field="${movie.director}">
 				<option value="">--Please choose an option--</option>
 				<option th:each="personne : ${personnes} "
 					th:text="${personne.firstname +' '+ personne.lastname}"
@@ -45,13 +45,18 @@
 		</div>
 		<div class="row">
 			<label for="genreInput"> Genre : </label> <br /> <select
-				name="genre" id="genreInput">
+				 id="genreInput" th:field="${movie.genre}">
 				<option value="">--Please choose an option--</option>
 				<option th:each="genre : ${genres} " th:text="${genre.name}"
 					th:value="${genre.id}"></option>
-
-
-
+			</select>
+		</div>
+		<div class="row">
+			<label for="actorsInput"> Genre : </label> <br /> <select
+				 id="actorsInput" th:field="${movie.actors}" multiple>
+				<option value="">--Please choose an option--</option>
+				<option th:each="personne : ${personnes} " th:text="${personne.firstname +' '+ personne.lastname}"
+					th:value="${personne.id}"></option>
 			</select>
 		</div>
 

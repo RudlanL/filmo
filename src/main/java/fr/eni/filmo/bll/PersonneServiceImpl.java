@@ -5,14 +5,14 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import fr.eni.filmo.bo.Personne;
-import fr.eni.filmo.dal.DirectorDao;
+import fr.eni.filmo.dal.PersonneDao;
 
 @Service
 public class PersonneServiceImpl implements PersonneService {
 
-	private DirectorDao directorDao;
+	private PersonneDao directorDao;
 	
-	public PersonneServiceImpl(DirectorDao directorDao) {
+	public PersonneServiceImpl(PersonneDao directorDao) {
 		this.directorDao = directorDao;
 	}
 	@Override

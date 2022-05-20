@@ -8,10 +8,10 @@ import org.springframework.stereotype.Repository;
 import fr.eni.filmo.bo.Personne;
 
 @Repository
-public class DirectorDaoImpl implements DirectorDao {
+public class PersonneDaoImpl implements PersonneDao {
 	List<Personne> personneList;
 
-	public DirectorDaoImpl() {
+	public PersonneDaoImpl() {
 		this.personneList = new ArrayList<Personne>();
 		Personne p = new Personne("Jean", "Patrick", 1);
 		Personne p1 = new Personne("Legrand", "Ken", 2);
