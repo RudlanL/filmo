@@ -4,32 +4,56 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+	crossorigin="anonymous">
 </head>
-<body>
+<body class="container">
+	<h1>Ajouter un film</h1>
 	<form action="/movies" method="post">
-		<label for="nameInput"> Title : </label> <input type="text"
-			name="name" id="nameInput" /><br /> <br /> <label
-			for="releaseYear"> Year : </label> <input type="number"
-			name="releaseYear" id="releaseYear" /> <label for="duration">Duration
-			: </label> <input type="number" name="duration" id="duration" /> <label
-			for="synopsis">Synopsis : </label> <input type="text" name="synopsis"
-			id="synopsis" /> <br /> <br /> <label for="directorFirstNameInput">
-			Director First Name : </label> <select name="director"
-			id="directorFirstNameInput">
-			<option value="">--Please choose an option--</option>
-			<option th:each="personne : ${personnes} "
-				th:text="${personne.firstname +' '+ personne.lastname}" th:value="${personne.id}"></option>
+		<div class="row">
+			<div class="col-sm">
+				<label for="nameInput"> Title : </label> <input type="text"
+					name="name" id="nameInput" />
+			</div>
+			<div class="col-sm">
+				<label for="releaseYear"> Year : </label> <input type="number"
+					name="releaseYear" id="releaseYear" />
+			</div>
+			<div class="col-sm">
+				<label for="duration">Duration : </label> <input type="number"
+					name="duration" id="duration" />
+			</div>
+		</div>
+		<div class="row">
+			<label for="synopsis">Synopsis : </label>
+			<textarea type="text" name="synopsis" id="synopsis"></textarea>
+		</div>
+		<div class="row">
+			<label for="directorFirstNameInput"> Director First Name : </label> <select
+				name="director" id="directorFirstNameInput">
+				<option value="">--Please choose an option--</option>
+				<option th:each="personne : ${personnes} "
+					th:text="${personne.firstname +' '+ personne.lastname}"
+					th:value="${personne.id}"></option>
 
 
 
-		</select> <br /> <br /> <label for="genreInput"> Genre : </label> <br /> <select
-			name="genre" id="genreInput">
-			<option value="" >--Please choose an option--</option>
-			<option th:each="genre : ${genres} " th:text="${genre.name}" th:value="${genre.id}"></option>
+			</select>
+		</div>
+		<div class="row">
+			<label for="genreInput"> Genre : </label> <br /> <select
+				name="genre" id="genreInput">
+				<option value="">--Please choose an option--</option>
+				<option th:each="genre : ${genres} " th:text="${genre.name}"
+					th:value="${genre.id}"></option>
 
 
 
-		</select> <br />
+			</select>
+		</div>
 
 		<button type="submit">Send</button>
 	</form>
