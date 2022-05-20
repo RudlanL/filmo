@@ -14,8 +14,8 @@ public class MovieDaoIpml implements MovieDao{
 	List<Movie> movieList;
 	public MovieDaoIpml() {
 		this.movieList = new ArrayList<Movie>();
-		Personne p = new Personne("Cailloux", "Pierre");
-		Genre g = new Genre("Horror");
+		Personne p = new Personne("Jean", "Patrick", 1);
+		Genre g = new Genre("Hooror", 1);
 		Movie m1 = new Movie( 0, "Saw", "ajhgaguitiufgayf", 15, 5, g, p);
 		Movie m2 = new Movie(1, "Conjuring", "auefyfeavyufav r_xcra-", 17, 155, g, p);
 		Movie m3 = new Movie(2, "Conjuring 2 ", "agiurexavè-v airtg_xèbr_gxa", 19, 152, g, p);
