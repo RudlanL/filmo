@@ -1,5 +1,7 @@
 package fr.eni.filmo.bo;
 
+import java.util.List;
+
 public class Movie {
 	private int id;
 	private String name;
@@ -8,10 +10,18 @@ public class Movie {
 	private int duration;
 	private Genre genre;
 	private Personne director;
+	private List<Avis> avis ;
+	
+	public List<Avis> getAvis() {
+		return avis;
+	}
+	public void setAvis(List<Avis> avis) {
+		this.avis = avis;
+	}
 	public Movie() {
 		
 	}
-	public Movie(int id, String name, String synopsis, int releaseyear, int duration,Genre genre, Personne director) {
+	public Movie(int id, String name, String synopsis, int releaseyear, int duration,Genre genre, Personne director ) {
 		this.id = id;
 		this.name = name;
 		this.synopsis = synopsis;
@@ -19,6 +29,7 @@ public class Movie {
 		this.duration = duration;
 		this.setDirector(director);
 		this.setGenre(genre);
+		
 		}
 	public String getName() {
 		return name;
