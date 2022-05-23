@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import fr.eni.filmo.bo.Movie;
+import fr.eni.filmo.bo.MovieNotFound;
 import fr.eni.filmo.dal.MovieDao;
 @Service
 public class MovieServiceImpl implements MovieService{
@@ -24,7 +25,7 @@ public class MovieServiceImpl implements MovieService{
 		return movieDao.selectAll();
 	}
 	@Override
-	public Movie select(int i) {
+	public Movie select(int i) throws MovieNotFound {
 		return  movieDao.select(i);
 	}
 

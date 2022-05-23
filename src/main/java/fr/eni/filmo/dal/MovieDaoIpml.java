@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import fr.eni.filmo.bo.Genre;
 import fr.eni.filmo.bo.Movie;
+import fr.eni.filmo.bo.MovieNotFound;
 import fr.eni.filmo.bo.Personne;
 
 @Repository
@@ -38,14 +39,13 @@ public class MovieDaoIpml implements MovieDao{
 		return this.movieList;
 	}
 	@Override
-	public Movie select(int i) {
-		Movie m = null;
+	public Movie select(int i) throws MovieNotFound {
 		for(Movie movie: this.movieList) {
 			if(movie.getId() == i) {
-				m = movie;
+				return movie;
 			}
 		}
-		return m;
+		throw new MovieNotFound();
 	}
 
 }

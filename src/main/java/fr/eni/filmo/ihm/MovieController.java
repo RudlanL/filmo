@@ -15,10 +15,10 @@ import fr.eni.filmo.bll.PersonneService;
 import fr.eni.filmo.bo.Avis;
 import fr.eni.filmo.bo.Genre;
 import fr.eni.filmo.bo.Movie;
+import fr.eni.filmo.bo.MovieNotFound;
 import fr.eni.filmo.bo.Personne;
 
 @Controller
-
 public class MovieController {
 	private MovieService movieService;
 	private PersonneService personneService;
@@ -48,7 +48,7 @@ public class MovieController {
 	}
 
 	@GetMapping("/movies/{id}")
-	public String hello(@PathVariable int id, Model model) {
+	public String hello(@PathVariable int id, Model model) throws MovieNotFound {
 		model.addAttribute("movie", movieService.select(id));
 		return "movie";
 	}
@@ -62,7 +62,7 @@ public class MovieController {
 	}
 	
 	@GetMapping("/movies/{id}/avis")
-	public String affichierAvis(@PathVariable int id ,Model model) {
+	public String affichierAvis(@PathVariable int id ,Model model) throws MovieNotFound {
 		model.addAttribute("movie", movieService.select(id));
 		return "avis";
 	}
