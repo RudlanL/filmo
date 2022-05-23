@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import fr.eni.filmo.bll.PersonneService;
 import fr.eni.filmo.bo.Personne;
+import fr.eni.filmo.bo.PersonneNotFound;
 
 @Component 
 public class StringToPersonneConverter implements Converter<String, Personne>{
@@ -19,7 +20,12 @@ public class StringToPersonneConverter implements Converter<String, Personne>{
 	@Override
 	public Personne convert(String source) {
 		Integer theid = Integer.parseInt(source);
-		return service.select(theid);
+		try {
+			return service.select(theid);
+		} catch (PersonneNotFound e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }

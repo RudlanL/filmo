@@ -5,6 +5,7 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 import fr.eni.filmo.bll.CategoryService;
+import fr.eni.filmo.bo.CategoryNotFound;
 import fr.eni.filmo.bo.Genre;
 
 @Component
@@ -20,7 +21,13 @@ public class StringToGenreConverter implements Converter<String, Genre> {
 	@Override
 	public Genre convert(String source) {
 		Integer theid = Integer.parseInt(source);
-		return service.select(theid);
+		try {
+			return service.select(theid);
+		} catch (CategoryNotFound e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }

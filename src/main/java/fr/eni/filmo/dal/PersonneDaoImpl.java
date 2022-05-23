@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import fr.eni.filmo.bo.Personne;
+import fr.eni.filmo.bo.PersonneNotFound;
 
 @Repository
 public class PersonneDaoImpl implements PersonneDao {
@@ -36,14 +37,14 @@ public class PersonneDaoImpl implements PersonneDao {
 	}
 
 	@Override
-	public Personne select(int i) {
+	public Personne select(int i) throws PersonneNotFound {
 		Personne p = null;
 		for (Personne personne : this.personneList) {
 			if (personne.getId() == i) {
-				p = personne;
+				return personne;
 			}
 		}
-		return p;
+		throw new PersonneNotFound();
 	}
 
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import fr.eni.filmo.bo.CategoryNotFound;
 import fr.eni.filmo.bo.Genre;
 
 @Repository
@@ -36,13 +37,12 @@ public class CategoryDaoImpl implements CategoryDao {
 	}
 
 	@Override
-	public Genre select(int i) {
-		Genre g = null;
+	public Genre select(int i) throws CategoryNotFound{
 		for (Genre genre : this.genreList) {
 			if (genre.getId() == i) {
-				g = genre;
+				return genre;
 			}
 		}
-		return g;
+		throw new CategoryNotFound();
 	}
 }

@@ -12,29 +12,43 @@
 </head>
 <body class="container">
 	<h1>Ajouter un film</h1>
-	<form action="/movies" method="post">
+	<form action="/form" method="post">
 		<div class="row">
 			<div class="col-sm">
 				<label for="nameInput"> Title : </label> <input type="text"
-					name="name" id="nameInput" th:field="${movie.name}" />
+					 id="nameInput" placeholder="Title" th:field="${movie.name}" />
+				<div class="alert alert-danger" th:if="${#fields.hasErrors('movie.name')}">
+					<p th:errors="${movie.name}"></p>
+				</div>
 			</div>
 			<div class="col-sm">
 				<label for="releaseYear"> Year : </label> <input type="number"
-					name="releaseYear" th:field="${movie.releaseyear}" id="releaseYear" />
+					th:field="${movie.releaseyear}" placeholder="Year"  id="releaseYear" />
+				<div class="alert alert-danger"
+					th:if="${#fields.hasErrors('movie.releaseyear')}">
+					<p th:errors="${movie.releaseyear}"></p>
+				</div>
 			</div>
 			<div class="col-sm">
 				<label for="duration">Duration : </label> <input type="number"
-					name="duration" id="duration" th:field="${movie.duration}"/>
+					id="duration" th:field="${movie.duration}" placeholder="Duration" />
+					<div class="alert alert-danger"
+					th:if="${#fields.hasErrors('movie.duration')}">
+					<p th:errors="${movie.duration}"></p>
+				</div>
 			</div>
 		</div>
 		<div class="row">
 			<label for="synopsis">Synopsis : </label>
-			<textarea type="text"  id="synopsis" th:field="${movie.synopsis}"></textarea>
+			<textarea type="text" id="synopsis" placeholder="Synopsis" th:field="${movie.synopsis}"></textarea>
+			<div class="alert alert-danger"
+				th:if="${#fields.hasErrors('movie.synopsis')}">
+				<p th:errors="${movie.synopsis}"></p>
+			</div>
 		</div>
 		<div class="row">
 			<label for="directorFirstNameInput"> Director First Name : </label> <select
-				 id="directorFirstNameInput" th:field="${movie.director}">
-				<option value="">--Please choose an option--</option>
+				id="directorFirstNameInput" th:field="${movie.director}">
 				<option th:each="personne : ${personnes} "
 					th:text="${personne.firstname +' '+ personne.lastname}"
 					th:value="${personne.id}"></option>
@@ -42,22 +56,34 @@
 
 
 			</select>
+			<div class="alert alert-danger"
+				th:if="${#fields.hasErrors('movie.director')}">
+				<p th:errors="${movie.director}"></p>
+			</div>
+			
 		</div>
 		<div class="row">
 			<label for="genreInput"> Genre : </label> <br /> <select
-				 id="genreInput" th:field="${movie.genre}">
-				<option value="">--Please choose an option--</option>
+				id="genreInput" th:field="${movie.genre}">
 				<option th:each="genre : ${genres} " th:text="${genre.name}"
 					th:value="${genre.id}"></option>
 			</select>
+			<div class="alert alert-danger"
+				th:if="${#fields.hasErrors('movie.genre')}">
+				<p th:errors="${movie.genre}"></p></div>
+			
 		</div>
 		<div class="row">
-			<label for="actorsInput"> Genre : </label> <br /> <select
-				 id="actorsInput" th:field="${movie.actors}" multiple>
-				<option value="">--Please choose an option--</option>
-				<option th:each="personne : ${personnes} " th:text="${personne.firstname +' '+ personne.lastname}"
+			<label for="actorsInput"> Actors : </label> <br /> <select
+				id="actorsInput" th:field="${movie.actors}" multiple>
+				<option th:each="personne : ${personnes} "
+					th:text="${personne.firstname +' '+ personne.lastname}"
 					th:value="${personne.id}"></option>
 			</select>
+			<div class="alert alert-danger"
+				th:if="${#fields.hasErrors('movie.actors')}">
+				<p th:errors="${movie.actors}"></p>
+			</div>
 		</div>
 
 		<button type="submit">Send</button>

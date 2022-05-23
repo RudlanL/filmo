@@ -1,7 +1,10 @@
 package fr.eni.filmo.ihm;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,11 +15,8 @@ import fr.eni.filmo.bll.AvisService;
 import fr.eni.filmo.bll.CategoryService;
 import fr.eni.filmo.bll.MovieService;
 import fr.eni.filmo.bll.PersonneService;
-import fr.eni.filmo.bo.Avis;
-import fr.eni.filmo.bo.Genre;
 import fr.eni.filmo.bo.Movie;
 import fr.eni.filmo.bo.MovieNotFound;
-import fr.eni.filmo.bo.Personne;
 
 @Controller
 public class MovieController {
@@ -25,31 +25,38 @@ public class MovieController {
 	private CategoryService categoryService;
 	private AvisService avisService;
 
-	public MovieController(MovieService movieService , PersonneService personneService , CategoryService categoryService , AvisService avisService) {
+	public MovieController(MovieService movieService, PersonneService personneService, CategoryService categoryService,
+			AvisService avisService) {
 		this.movieService = movieService;
 		this.personneService = personneService;
-		this.categoryService = categoryService ;
+		this.categoryService = categoryService;
 		this.avisService = avisService;
 	}
 
-	@PostMapping("/movies")
-	public String hello(@ModelAttribute("movie") Movie movie) {
+	@PostMapping("/form")
+	public String hello(@Valid @ModelAttribute("movie") Movie movie, BindingResult validationResult, Model model) {
 		Movie mov = movie;
+		if (validationResult.hasErrors()) {
+			model.addAttribute("personnes", personneService.selectAll());
+			model.addAttribute("genres", categoryService.selectAll());
+			return "form";
+		}
 		movieService.insert(mov);
 		return "redirect:/movies";
 	}
 
 	@GetMapping({ "", "/movies" })
 	public String afficherListeMovies(Model model) {
-		System.out.println(movieService.selectAll().size());
 		model.addAttribute("movies", movieService.selectAll());
-		System.out.println(movieService.selectAll().size());
 		return "listeMovie";
 	}
 
 	@GetMapping("/movies/{id}")
 	public String hello(@PathVariable int id, Model model) throws MovieNotFound {
-		model.addAttribute("movie", movieService.select(id));
+		Long newId = Long.valueOf(id);
+		System.out.println(newId);
+		System.out.println(movieService.select(newId).get());
+		model.addAttribute("movie", movieService.select(newId).get());
 		return "movie";
 	}
 
@@ -60,16 +67,17 @@ public class MovieController {
 		model.addAttribute("movie", new Movie());
 		return "form";
 	}
-	
+
 	@GetMapping("/movies/{id}/avis")
-	public String affichierAvis(@PathVariable int id ,Model model) throws MovieNotFound {
-		model.addAttribute("movie", movieService.select(id));
+	public String affichierAvis(@PathVariable int id, Model model) throws MovieNotFound {
+		Long newId = Long.valueOf(id);
+		model.addAttribute("movie", movieService.select(newId).get());
 		return "avis";
 	}
+
 	@PostMapping("/avis")
-	public String avis(@RequestParam int rate,
-			@RequestParam String description , @RequestParam int id) {
-		
-		return "redirect:/movies" ;
+	public String avis(@RequestParam int rate, @RequestParam String description, @RequestParam int id) {
+
+		return "redirect:/movies";
 	}
 }

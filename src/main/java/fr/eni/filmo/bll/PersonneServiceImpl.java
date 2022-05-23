@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import fr.eni.filmo.bo.Personne;
+import fr.eni.filmo.bo.PersonneNotFound;
 import fr.eni.filmo.dal.PersonneDao;
 
 @Service
@@ -26,7 +27,7 @@ public class PersonneServiceImpl implements PersonneService {
 		return this.directorDao.selectAll();
 	}
 	@Override
-	public Personne select(int i) {
+	public Personne select(int i) throws PersonneNotFound {
 		return  this.directorDao.select(i);
 	}
 }

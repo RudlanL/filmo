@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import fr.eni.filmo.bo.CategoryNotFound;
 import fr.eni.filmo.bo.Genre;
 import fr.eni.filmo.dal.CategoryDao;
 
@@ -25,7 +26,7 @@ public class CategoryServiceImpl implements CategoryService{
 		return categoryDao.selectAll();
 	}
 	@Override
-	public Genre select(int i) {
+	public Genre select(int i) throws CategoryNotFound {
 		return  categoryDao.select(i);
 	}
 }

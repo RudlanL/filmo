@@ -23,19 +23,18 @@
 		</thead>
 		<tbody>
 			<tr th:each="movie : ${movies}">
-				<td th:text="${movie.genre.name}">Adventure</td>
+				<!-- <td th:text="${movie.genre.name}">Adventure</td> -->
 				<td th:text="${movie.releaseyear}"></td>
 				<td th:text="${movie.name}"></td>
-				<td th:text="${movie.director.lastname + ' '+ movie.director.firstname}">Jean Pierre</td>
+				<!-- <td th:text="${movie.director.lastname + ' '+ movie.director.firstname}">Jean Pierre</td> -->
 				<td>
 					<div class="d-flex">
 						<a th:href="@{'/movies/'+${movie.id}}" class="btn btn-success mr-2">
 							Details
 						</a>
-						<a th:href="@{'/movies/'+${movie.id}+'/avis/'}" class="btn btn-success mr-2">
+						<a th:href="@{'/movies/'+${movie.id}+'/avis/'}" class="btn btn-dark mr-2">
 							Avis
 						</a>
-						<button class="btn btn-dark">Avis</button>
 					</div>
 				</td>
 			</tr>

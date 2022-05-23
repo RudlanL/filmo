@@ -2,15 +2,49 @@ package fr.eni.filmo.bo;
 
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Transient;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+@Entity
 public class Movie {
-	private int id;
+	@Id
+	@GeneratedValue
+	private Long id;
+	
+	@NotBlank
 	private String name;
+	
+	@NotBlank
+	@Size(min= 20, max= 250)
 	private String synopsis;
+	
+	@NotNull
+	@Min(1)
 	private int releaseyear;
+	
+	@NotNull
+	@Min(2)
 	private int duration;
+	
+	@NotNull
+	@Transient
 	private Genre genre;
+	
+	@NotNull
+	@Transient
 	private Personne director;
+	
+	@NotNull
+	@Transient
 	private List<Personne> actors;
+	
+	@Transient
 	private List<Avis> avis ;
 	
 	public List<Avis> getAvis() {
@@ -22,7 +56,7 @@ public class Movie {
 	public Movie() {
 		
 	}
-	public Movie(int id, String name, String synopsis, int releaseyear, int duration,Genre genre, Personne director, List<Personne> actors) {
+	public Movie(long id, String name, String synopsis, int releaseyear, int duration,Genre genre, Personne director, List<Personne> actors) {
 		this.id = id;
 		this.name = name;
 		this.synopsis = synopsis;
@@ -68,10 +102,10 @@ public class Movie {
 	public void setGenre(Genre genre) {
 		this.genre = genre;
 	}
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public List<Personne> getActors() {
