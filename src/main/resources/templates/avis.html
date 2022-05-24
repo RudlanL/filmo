@@ -11,6 +11,9 @@
 </head>
 <body class="m-5">
 	<h1 class="mt-5">Liste des avis</h1>
+							<a th:href="@{'/movies/'+${movie.id}+'/avisform/'}"class="btn btn-dark mr-2">
+							Avis
+						</a>
 	<table class="table">
 		<thead>
 			<tr>
@@ -26,6 +29,8 @@
 				<td th:text="${a.rate}"></td>
 				<td th:text="${a.description}"></td>
 			</tr>
+			
+			
 		</tbody>
 
 	</table>

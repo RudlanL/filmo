@@ -2,26 +2,33 @@ package fr.eni.filmo.bll;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import fr.eni.filmo.bo.User;
+import fr.eni.filmo.dal.PersonneDao;
+import fr.eni.filmo.dal.UserDao;
 
+@Service
 public class UserServiceImpl implements UserService {
-
+	private UserDao userDao;
+	
+	
+	public UserServiceImpl(PersonneDao directorDao) {
+		this.userDao = userDao;
+	}
 	@Override
-	public void insert(User g) {
-		// TODO Auto-generated method stub
+	public void insert(User u) {
+		this.userDao.save(u);
 		
 	}
 
 	@Override
 	public List<User> selectAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.userDao.findAll();
 	}
-
 	@Override
-	public User select(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public User select(Long i)  {
+		return  this.userDao.getById(i);
 	}
 
 }

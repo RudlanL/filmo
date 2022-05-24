@@ -7,5 +7,5 @@ import fr.eni.filmo.bo.User;
 public interface UserService {
 	public void insert(User g);
 	public List<User> selectAll();
-	public User select(int id);
+	public User select(Long id);
 }
