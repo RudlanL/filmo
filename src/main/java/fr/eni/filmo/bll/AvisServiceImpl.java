@@ -16,16 +16,16 @@ public class AvisServiceImpl implements AvisService{
 	}
 	@Override
 	public void insert(Avis a) {
-		this.avisDao.insert(a);
+		this.avisDao.save(a);
 		
 	}
 
 	@Override
 	public List<Avis> selectAll() {
-		return avisDao.selectAll();
+		return avisDao.findAll();
 	}
 	@Override
-	public Avis select(int i) {
-		return  avisDao.select(i);
+	public Avis select(Long i) {
+		return  avisDao.getById(i);
 	}
 }

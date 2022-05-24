@@ -1,15 +1,12 @@
 package fr.eni.filmo.dal;
 
-import java.util.List;
 
-import fr.eni.filmo.bo.CategoryNotFound;
+import org.springframework.data.jpa.repository.JpaRepository;
+
 import fr.eni.filmo.bo.Genre;
 
 
-public interface CategoryDao {
-		public void insert(Genre g);
-		public List<Genre> selectAll();
-		public Genre select(int i) throws CategoryNotFound;
-	}
+public interface CategoryDao extends JpaRepository<Genre, Long>{
+}
 
 

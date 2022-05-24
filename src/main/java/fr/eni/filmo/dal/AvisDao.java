@@ -1,13 +1,11 @@
 package fr.eni.filmo.dal;
 
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import fr.eni.filmo.bo.Avis;
 
-public interface AvisDao {
-	public void insert(Avis g);
-	public List<Avis> selectAll();
-	public Avis select(int i);
+public interface AvisDao extends JpaRepository<Avis, Long> {
+
 }
 
 

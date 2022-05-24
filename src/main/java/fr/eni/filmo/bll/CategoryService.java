@@ -8,5 +8,5 @@ import fr.eni.filmo.bo.Genre;
 public interface CategoryService {
 	public void insert(Genre g);
 	public List<Genre> selectAll();
-	public Genre select(int id) throws CategoryNotFound;
+	public Genre select(Long id) throws CategoryNotFound;
 }

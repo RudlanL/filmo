@@ -7,15 +7,16 @@ import org.springframework.stereotype.Repository;
 
 import fr.eni.filmo.bo.Avis;
 
+/*
 @Repository
 public class AvisDaoImpl implements AvisDao {
 	List<Avis> avisList;
 
 	public AvisDaoImpl() {
 		this.avisList = new ArrayList<Avis>();
-		Avis a = new Avis(1,"C'est genial", 1);
-		Avis a1 = new Avis(2,"c'est nul", 2);
-		Avis a2 = new Avis(3,"c'est moyen", 3);
+		Avis a = new Avis(Long.valueOf(1),"C'est genial", 1);
+		Avis a1 = new Avis(Long.valueOf(2),"c'est nul", 2);
+		Avis a2 = new Avis(Long.valueOf(3),"c'est moyen", 3);
 
 		this.insert(a);
 		this.insert(a1);
@@ -36,7 +37,7 @@ public class AvisDaoImpl implements AvisDao {
 	}
 
 	@Override
-	public Avis select(int i) {
+	public Avis select(Long i) {
 		Avis a = null;
 		for (Avis avis : this.avisList) {
 			if (avis.getId() == i) {
@@ -46,3 +47,4 @@ public class AvisDaoImpl implements AvisDao {
 		return a;
 	}
 }
+*/

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import fr.eni.filmo.bo.CategoryNotFound;
 import fr.eni.filmo.bo.Genre;
 
+/*
 @Repository
 public class CategoryDaoImpl implements CategoryDao {
 	List<Genre> genreList;
@@ -45,4 +46,4 @@ public class CategoryDaoImpl implements CategoryDao {
 		}
 		throw new CategoryNotFound();
 	}
-}
+}*/

@@ -1,20 +1,33 @@
 package fr.eni.filmo.bo;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Genre {
-	private int id;
-	public int getId() {
+	@Id
+	@GeneratedValue
+	private Long id;
+	
+	private String name;
+	
+	public Long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
-	private String name;
+	
 	public Genre() {
 		
 	}
-	public Genre(String name, int id) {
+	public Genre(String name, Long id) {
 		this.setName(name);
 		this.setId(id);
+	}
+	public Genre(String name) {
+		this.setName(name);
 	}
 	public String getName() {
 		return name;

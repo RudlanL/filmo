@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import fr.eni.filmo.bo.User;
 import fr.eni.filmo.bo.UserNotFound;
 
+/*
 @Repository
 public class UserDaoIpml implements UserDao{
 	List<User> users;
@@ -37,3 +38,4 @@ public class UserDaoIpml implements UserDao{
 	}
 
 }
+*/

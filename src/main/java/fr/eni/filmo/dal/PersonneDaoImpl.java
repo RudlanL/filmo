@@ -8,15 +8,16 @@ import org.springframework.stereotype.Repository;
 import fr.eni.filmo.bo.Personne;
 import fr.eni.filmo.bo.PersonneNotFound;
 
+/*
 @Repository
 public class PersonneDaoImpl implements PersonneDao {
 	List<Personne> personneList;
 
 	public PersonneDaoImpl() {
 		this.personneList = new ArrayList<Personne>();
-		Personne p = new Personne("Jean", "Patrick", 1);
-		Personne p1 = new Personne("Legrand", "Ken", 2);
-		Personne p2 = new Personne("Leptit", "kenny", 3);
+		Personne p = new Personne("Jean", "Patrick", Long.valueOf(1));
+		Personne p1 = new Personne("Legrand", "Ken", Long.valueOf(2));
+		Personne p2 = new Personne("Leptit", "kenny", Long.valueOf(3));
 
 		this.insert(p);
 		this.insert(p1);
@@ -37,7 +38,7 @@ public class PersonneDaoImpl implements PersonneDao {
 	}
 
 	@Override
-	public Personne select(int i) throws PersonneNotFound {
+	public Personne select(Long i) throws PersonneNotFound {
 		Personne p = null;
 		for (Personne personne : this.personneList) {
 			if (personne.getId() == i) {
@@ -47,4 +48,4 @@ public class PersonneDaoImpl implements PersonneDao {
 		throw new PersonneNotFound();
 	}
 
-}
+}*/

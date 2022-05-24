@@ -18,16 +18,16 @@ public class PersonneServiceImpl implements PersonneService {
 	}
 	@Override
 	public void insert(Personne p) {
-		this.directorDao.insert(p);
+		this.directorDao.save(p);
 		
 	}
 
 	@Override
 	public List<Personne> selectAll() {
-		return this.directorDao.selectAll();
+		return this.directorDao.findAll();
 	}
 	@Override
-	public Personne select(int i) throws PersonneNotFound {
-		return  this.directorDao.select(i);
+	public Personne select(Long i) throws PersonneNotFound {
+		return  this.directorDao.getById(i);
 	}
 }

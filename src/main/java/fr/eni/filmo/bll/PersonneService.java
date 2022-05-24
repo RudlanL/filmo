@@ -8,5 +8,5 @@ import fr.eni.filmo.bo.PersonneNotFound;
 public interface PersonneService {
 	public void insert(Personne p);
 	public List<Personne> selectAll();
-	public Personne select(int id) throws PersonneNotFound;
+	public Personne select(Long id) throws PersonneNotFound;
 }

@@ -1,11 +1,8 @@
 package fr.eni.filmo.dal;
 
-import java.util.List;
-
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import fr.eni.filmo.bo.Movie;
-import fr.eni.filmo.bo.MovieNotFound;
 
-public interface MovieDao extends CrudRepository<Movie, Long>{
+public interface MovieDao extends JpaRepository<Movie, Long>{
 }

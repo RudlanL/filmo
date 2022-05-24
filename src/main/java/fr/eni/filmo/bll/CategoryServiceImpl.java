@@ -17,16 +17,16 @@ public class CategoryServiceImpl implements CategoryService{
 	}
 	@Override
 	public void insert(Genre g) {
-		this.categoryDao.insert(g);
+		this.categoryDao.save(g);
 		
 	}
 
 	@Override
 	public List<Genre> selectAll() {
-		return categoryDao.selectAll();
+		return categoryDao.findAll();
 	}
 	@Override
-	public Genre select(int i) throws CategoryNotFound {
-		return  categoryDao.select(i);
+	public Genre select(Long i) throws CategoryNotFound {
+		return  categoryDao.getById(i);
 	}
 }

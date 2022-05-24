@@ -54,8 +54,6 @@ public class MovieController {
 	@GetMapping("/movies/{id}")
 	public String hello(@PathVariable int id, Model model) throws MovieNotFound {
 		Long newId = Long.valueOf(id);
-		System.out.println(newId);
-		System.out.println(movieService.select(newId).get());
 		model.addAttribute("movie", movieService.select(newId).get());
 		return "movie";
 	}
@@ -71,7 +69,7 @@ public class MovieController {
 	@GetMapping("/movies/{id}/avis")
 	public String affichierAvis(@PathVariable int id, Model model) throws MovieNotFound {
 		Long newId = Long.valueOf(id);
-		model.addAttribute("movie", movieService.select(newId).get());
+		model.addAttribute("avis", movieService.select(newId).get().getAvis());
 		return "avis";
 	}
 
