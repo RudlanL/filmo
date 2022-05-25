@@ -25,7 +25,7 @@
 		</thead>
 		<tbody>
 			<tr th:each="a : ${avis}">
-				<td th:text="${a.user.login + ' ' + a.user.firstname}"></td>
+				<td th:text="${a.user.username + ' ' + a.user.firstname}"></td>
 				<td th:text="${a.rate}"></td>
 				<td th:text="${a.description}"></td>
 			</tr>

@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import fr.eni.filmo.bo.User;
 
 public interface UserDao extends JpaRepository<User, Long> {
-
+	public User findByUsername(String username);
 }

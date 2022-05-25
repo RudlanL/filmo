@@ -26,8 +26,8 @@ public class MovieServiceImpl implements MovieService{
 		return (List<Movie>) movieDao.findAll();
 	}
 	@Override
-	public Optional<Movie> select(Long i) throws MovieNotFound {
-		return  movieDao.findById(i);
+	public Movie select(Long i) throws MovieNotFound {
+		return  movieDao.findById(i).orElseThrow(() -> new MovieNotFound());
 	}
 
 }

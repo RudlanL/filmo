@@ -15,7 +15,7 @@ public class ExceptionHandlerController {
 	@ExceptionHandler({UserNotFound.class, MovieNotFound.class})
 	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public String handlePersonneNotFound(Exception e, Model model) {
-		model.addAttribute("exception", e);
+		model.addAttribute("exception", e.getClass());
 		return "errors/error";
     }
 }

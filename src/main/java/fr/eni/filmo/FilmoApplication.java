@@ -18,6 +18,7 @@ import fr.eni.filmo.dal.CategoryDao;
 import fr.eni.filmo.dal.MovieDao;
 import fr.eni.filmo.dal.PersonneDao;
 import fr.eni.filmo.dal.UserDao;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
 public class FilmoApplication {
@@ -26,7 +27,7 @@ public class FilmoApplication {
 		SpringApplication.run(FilmoApplication.class, args);
 	}
 	@Bean
-	public CommandLineRunner demo(MovieDao movieDao, CategoryDao categoryDao, PersonneDao personneDao , UserDao userDao ,  AvisDao avisDao) {
+	public CommandLineRunner demo(MovieDao movieDao, CategoryDao categoryDao, PersonneDao personneDao , UserDao userDao ,  AvisDao avisDao, PasswordEncoder passwordEncoder) {
 		return (args) -> {
 			Genre g = new Genre("Hooror");
 			Genre g1 = new Genre("Adventure");
@@ -34,7 +35,7 @@ public class FilmoApplication {
 			categoryDao.save(g);
 			categoryDao.save(g1);
 			categoryDao.save(g2);
-			User u = new User("Kennyx", "Le grand", "ken",true);
+			User u = new User("Kennyx", "Legrand",passwordEncoder.encode("toto"),"ken", true);
 			userDao.save(u);
 			Personne p = new Personne("Jean", "Patrick");
 			Personne p1 = new Personne("Legrand", "Ken");

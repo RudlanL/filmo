@@ -30,5 +30,9 @@ public class UserServiceImpl implements UserService {
 	public User select(Long i)  {
 		return  this.userDao.getById(i);
 	}
+	@Override
+	public User selectUserByLogin(String login) {
+		return this.userDao.findByUsername(login);
+	}
 
 }

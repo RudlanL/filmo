@@ -1,5 +1,6 @@
 package fr.eni.filmo.bo;
 
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -10,17 +11,21 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 @Entity
-public class User {
+public class User implements UserDetails{
+	
 	@Id
 	@GeneratedValue
 	private Long id;
 	
-	private String login;
+	private String username;
 	private String password;
 	private String lastname;
 	private String firstname;
-	private boolean admin;
+	private Boolean admin;
 	
 	@OneToMany(cascade = { CascadeType.PERSIST }, fetch = FetchType.LAZY, orphanRemoval = true , mappedBy="user") 
 	private List<Avis> avis;
@@ -37,12 +42,6 @@ public class User {
 	}
 	public void setId(Long id) {
 		this.id = id;
-	}
-	public String getLogin() {
-		return login;
-	}
-	public void setLogin(String login) {
-		this.login = login;
 	}
 	public String getPassword() {
 		return password;
@@ -68,10 +67,49 @@ public class User {
 	public void setAdmin(Boolean admin) {
 		this.admin = admin;
 	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
 	
 	public User() {
 	}
-	public User(String login, String lastname, String firstname, boolean admin) {
+	public User(String username, String lastname, String firstname, boolean admin) {
+		this.admin = admin;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.username = username;
+	}
+	public User(String username, String lastname,String password ,String firstname, boolean admin) {
+		this.admin = admin;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.password = password;
+		this.username = username;
+	}
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public String getUsername() {
+		return this.username;
+	}
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+	@Override
+	public boolean isEnabled() {
+		return true;
 	}
 	
 }
