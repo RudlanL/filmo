@@ -1,22 +1,18 @@
 package fr.eni.filmo.bo;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 public class Personne {
 	@Id
 	@GeneratedValue
 	private Long id;
-	
+	@NotBlank
 	private String lastname;
+	@NotBlank
 	private String firstname;
 	
 

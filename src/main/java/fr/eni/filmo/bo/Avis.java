@@ -4,13 +4,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 public class Avis {
 	@Id
 	@GeneratedValue
 	private Long id;
+	@NotBlank
 	private String description;
+	@Min(0)
 	private int rate;
 	
 	

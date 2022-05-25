@@ -12,6 +12,12 @@
 </head>
 <body class="container d-flex justify-content-center">
 	<div class="container">
+		<div class="alert alert-danger" th:if="${param.error}">
+            Invalid username and password.
+        </div>
+        <div class="alert alert-danger" th:if="${param.logout}">
+            You have been logged out.
+        </div>
 		<form th:action="@{/login}" method="post">
 			<label for="nameInput"> Identifiant : </label> <input type="text"
 				name="username" id="nameInput" required /> <br /> <br /> <label
@@ -21,6 +27,9 @@
 					<button type="submit">Log in</button>
 				</div>
 		</form>
+		<div class="col-sm">
+			<a class="btn btn-success mr-2" href="/"> Movies</a>
+		</div>
 	</div>
 
 </body>

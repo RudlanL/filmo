@@ -1,5 +1,6 @@
 package fr.eni.filmo.bo;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -8,15 +9,20 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 public class User implements UserDetails{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7957027104502880982L;
+
 	@Id
 	@GeneratedValue
 	private Long id;
@@ -88,8 +94,12 @@ public class User implements UserDetails{
 	}
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		return null;
+		List<GrantedAuthority> roles = new ArrayList<GrantedAuthority>();
+		if(this.admin) {
+			roles.add(new SimpleGrantedAuthority("ADMIN"));
+		}
+		roles.add(new SimpleGrantedAuthority("USER"));
+		return roles;
 	}
 	@Override
 	public String getUsername() {
