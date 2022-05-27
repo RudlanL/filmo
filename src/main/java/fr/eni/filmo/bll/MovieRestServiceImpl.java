@@ -1,6 +1,7 @@
 package fr.eni.filmo.bll;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -17,8 +18,8 @@ public class MovieRestServiceImpl implements MovieRestService{
 		return this.movieDao.findAll();
 	}
 	@Override
-	public Movie select(Long i) {
-		return this.movieDao.findById(i).get();
+	public Optional<Movie> select(Long i) {
+		return this.movieDao.findById(i);
 	}
 
 }

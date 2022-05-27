@@ -1,7 +1,10 @@
 package fr.eni.filmo.ihm;
 
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,8 +23,12 @@ public class RestMovieController {
 		return this.movieService.selectAll();
 	}
 	@GetMapping("/api/movies/{movieId}")
-	public Movie restMovies(@PathVariable int movieId) {
+	public ResponseEntity<Movie> restMovies(@PathVariable int movieId) {
 		Long newId = Long.valueOf(movieId);
-		return this.movieService.select(newId);
+		Optional<Movie> mov = this.movieService.select(newId);
+		if(mov.isPresent()) {
+			return new ResponseEntity<Movie>( mov.get(), HttpStatus.ACCEPTED);
+		}
+		return new ResponseEntity<Movie>(HttpStatus.BAD_REQUEST);
 	}
 }
